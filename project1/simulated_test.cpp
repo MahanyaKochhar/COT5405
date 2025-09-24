@@ -32,37 +32,59 @@ vector<vector<int>> connectedComponents(vector<vector<int>>adjlist)
     return ans;
 }
 
-void checkCycle(vector<vector<int>>&adjlist,int u,int p,vector<bool>& visited,vector<int>& ans)
+void checkCycle(vector<vector<int>>&adjlist,int u,int p,vector<bool>& visited,vector<int>&curr,int& st,vector<int>& ans)
 {
     visited[u] = true;
+    curr.push_back(u);
     for(auto v : adjlist[u])
     {
         if(!visited[v])
         {
-            checkCycle(adjlist,v,u,visited,ans);
+            checkCycle(adjlist,v,u,visited,curr,st,ans);
         }
-        else if(visited[v] && u != p)
+        else if(visited[v] && v != p && ans.size() == 0)
         {
-            // Cycle exists
+            ans = curr;
+            st = v;
         }
     }
+    curr.pop_back();
 }
 
-vector<int> oneCycle(vector<vector<int>>adjlist)
+vector<int> oneCycle(vector<vector<int>>& adjlist)
 {
+    vector<int>fin;
     int N = adjlist.size();
     vector<bool>visited(N,false);
     vector<int>ans;
-    cout << "Here";
+    vector<int>curr;
+    int st = -1;
     for(int i = 0; i < N ; i++)
     {
         if(!visited[i])
         {
             vector<int>ans;
-            checkCycle(adjlist,i,-1,visited,ans);
+            checkCycle(adjlist,i,-1,visited,curr,st,ans);
+            if(st != -1)
+            {
+                break;
+            }
         }
     }
-    return ans;
+    bool start = false;
+    for(int i = 0 ; i < ans.size();i++)
+    {
+        if(ans[i] == st)
+        {
+            start = true;
+        }
+        if(start == true)
+        {
+            fin.push_back(ans[i]);
+        }
+    }
+    fin.push_back(st);
+    return fin;
 }
 
 int main()
@@ -70,13 +92,5 @@ int main()
     int N;
     cin >> N;
     vector<vector<int>>adjlist = nCycle(N);
-    vector<vector<int>>ans = connectedComponents(adjlist);
-    // for(int i = 0 ; i < ans.size();i++)
-    // {
-    //     for(int j = 0 ; j < ans[i].size();j++)
-    //     {
-    //         cout << ans[i][j] << " ";
-    //     }
-    //     cout << "\n";
-    // }
+    vector<int> ans = oneCycle(adjlist);
 }
