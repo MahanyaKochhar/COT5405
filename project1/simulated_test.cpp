@@ -63,7 +63,6 @@ vector<int> oneCycle(vector<vector<int>>& adjlist)
     {
         if(!visited[i])
         {
-            vector<int>ans;
             checkCycle(adjlist,i,-1,visited,curr,st,ans);
             if(st != -1)
             {
@@ -83,7 +82,8 @@ vector<int> oneCycle(vector<vector<int>>& adjlist)
             fin.push_back(ans[i]);
         }
     }
-    fin.push_back(st);
+    if(st != -1)
+        fin.push_back(st);
     return fin;
 }
 
@@ -91,6 +91,10 @@ int main()
 {
     int N;
     cin >> N;
-    vector<vector<int>>adjlist = nCycle(N);
+    vector<vector<int>>adjlist = heap(N);
     vector<int> ans = oneCycle(adjlist);
+    for(auto x : ans)
+    {
+        cout << x << " ";
+    }
 }

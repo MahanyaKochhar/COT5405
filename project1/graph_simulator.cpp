@@ -35,9 +35,9 @@ vector<vector<int>> empty(int N)
     return adjlist;
 }
 
-bool checkValid(int N,int poss)
+bool checkValid(int N,int poss,int i)
 {
-    if(poss >= 0 && poss < N)
+    if(poss >= 0 && poss < N && poss != i)
     {
         return true;
     }
@@ -52,15 +52,15 @@ vector<vector<int>> heap(int N)
         int v1 = (i - 1) / 2;
         int v2 = 2 * i + 1;
         int v3 = 2 * i + 2;
-        if(checkValid(N,v1))
+        if(checkValid(N,v1,i))
         {
             adjlist[i].push_back(v1);
         }
-        if(checkValid(N,v2))
+        if(checkValid(N,v2,i))
         {
             adjlist[i].push_back(v2);
         }
-        if(checkValid(N,v3))
+        if(checkValid(N,v3,i))
         {
             adjlist[i].push_back(v3);
         }
