@@ -90,8 +90,27 @@ vector<int> oneCycle(vector<vector<int>>& adjlist)
 int main()
 {
     int N;
+    int type;
     cin >> N;
-    vector<vector<int>>adjlist = heap(N);
+    cin >> type;
+    vector<vector<int>>adjlist;
+    switch (type)
+    {
+    case 0:
+        adjlist = nCycle(N);
+        break;
+    case 1:
+        adjlist = complete(N);
+        break;
+    case 2:
+        adjlist = empty(N);
+        break;
+    case 3:
+        adjlist = heap(N);
+        break;
+    default:
+        break;
+    }
     vector<int> ans = oneCycle(adjlist);
     for(auto x : ans)
     {
