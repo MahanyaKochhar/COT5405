@@ -87,6 +87,37 @@ vector<int> oneCycle(vector<vector<int>>& adjlist)
     return fin;
 }
 
+void shortestPaths(vector<vector<int>>adjlist,int s)
+{
+    int N = adjlist.size();
+    vector<int> d(N,INT_MAX);
+    vector<int>p(N);
+    priority_queue<pair<int,int>>pq;
+    d[s] = 0;
+    p[s] = -1;
+    pq.push({0,s});
+    while(!pq.empty())
+    {
+        pair<int,int> curr = pq.top();
+        int dist = -curr.first;
+        int u = curr.second;
+        pq.pop();
+        if(d[s] != dist)
+        {
+            continue;
+        }
+        for(auto v : adjlist[u])
+        {
+            if(d[u] + 1 < d[v])
+            {
+                d[v] = d[u] + 1;
+                p[v] = u;
+                pq.push({-d[v],v});
+            }
+        }
+    }
+}
+
 int main()
 {
     int N;
