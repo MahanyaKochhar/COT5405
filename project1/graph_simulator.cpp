@@ -1,5 +1,4 @@
 #include "graph_simulator.h"
-#include<iostream>
 using namespace std;
 
 vector<vector<int>> nCycle(int N)

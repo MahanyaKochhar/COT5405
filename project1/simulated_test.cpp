@@ -1,150 +1,23 @@
-#include<iostream>
+#include "graph_operations.h"
 #include "graph_simulator.h"
+#include<iostream>
+#include<functional>
 using namespace std;
-
-void dfs(int u,vector<vector<int>>& adjlist,vector<bool>& visited,vector<int>& fin)
-{
-    visited[u] = true;
-    fin.push_back(u);
-    for(auto v : adjlist[u])
-    {
-        if(!visited[v])
-        {
-            dfs(v,adjlist,visited,fin);
-        }
-    }
-}
-
-vector<vector<int>> connectedComponents(vector<vector<int>>adjlist)
-{
-    int N = adjlist.size();
-    vector<bool>visited(N,false);
-    vector<vector<int>>ans;
-    for(int i = 0; i < N ; i++)
-    {
-        if(!visited[i])
-        {
-            vector<int>fin;
-            dfs(i,adjlist,visited,fin);
-            ans.push_back(fin);
-        }
-    }
-    return ans;
-}
-
-void checkCycle(vector<vector<int>>&adjlist,int u,int p,vector<bool>& visited,vector<int>&curr,int& st,vector<int>& ans)
-{
-    visited[u] = true;
-    curr.push_back(u);
-    for(auto v : adjlist[u])
-    {
-        if(!visited[v])
-        {
-            checkCycle(adjlist,v,u,visited,curr,st,ans);
-        }
-        else if(visited[v] && v != p && ans.size() == 0)
-        {
-            ans = curr;
-            st = v;
-        }
-    }
-    curr.pop_back();
-}
-
-vector<int> oneCycle(vector<vector<int>>& adjlist)
-{
-    vector<int>fin;
-    int N = adjlist.size();
-    vector<bool>visited(N,false);
-    vector<int>ans;
-    vector<int>curr;
-    int st = -1;
-    for(int i = 0; i < N ; i++)
-    {
-        if(!visited[i])
-        {
-            checkCycle(adjlist,i,-1,visited,curr,st,ans);
-            if(st != -1)
-            {
-                break;
-            }
-        }
-    }
-    bool start = false;
-    for(int i = 0 ; i < ans.size();i++)
-    {
-        if(ans[i] == st)
-        {
-            start = true;
-        }
-        if(start == true)
-        {
-            fin.push_back(ans[i]);
-        }
-    }
-    if(st != -1)
-        fin.push_back(st);
-    return fin;
-}
-
-void shortestPaths(vector<vector<int>>adjlist,int s)
-{
-    int N = adjlist.size();
-    vector<int> d(N,INT_MAX);
-    vector<int>p(N);
-    priority_queue<pair<int,int>>pq;
-    d[s] = 0;
-    p[s] = -1;
-    pq.push({0,s});
-    while(!pq.empty())
-    {
-        pair<int,int> curr = pq.top();
-        int dist = -curr.first;
-        int u = curr.second;
-        pq.pop();
-        if(d[s] != dist)
-        {
-            continue;
-        }
-        for(auto v : adjlist[u])
-        {
-            if(d[u] + 1 < d[v])
-            {
-                d[v] = d[u] + 1;
-                p[v] = u;
-                pq.push({-d[v],v});
-            }
-        }
-    }
-}
 
 int main()
 {
     int N;
-    int type;
     cin >> N;
-    cin >> type;
-    vector<vector<int>>adjlist;
-    switch (type)
+
+    vector<function<vector<vector<int>>(int)>> types = {nCycle,complete,empty,heap};
+    for(auto& func : types)
     {
-    case 0:
-        adjlist = nCycle(N);
-        break;
-    case 1:
-        adjlist = complete(N);
-        break;
-    case 2:
-        adjlist = empty(N);
-        break;
-    case 3:
-        adjlist = heap(N);
-        break;
-    default:
-        break;
+        vector<vector<int>>adjlist = func(N);
+        
+        connectedComponents
+        oneCycle
+        shortestPaths
+
     }
-    vector<int> ans = oneCycle(adjlist);
-    for(auto x : ans)
-    {
-        cout << x << " ";
-    }
+
 }

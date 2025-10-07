@@ -1,16 +1,14 @@
 
-#ifndef SIMULATOR_H
-#define SIMULATOR_H
-#include<iostream>
+#ifndef GRAPH_SIMULATOR_H
+#define GRAPH_SIMULATOR_H
 #include<vector>
-using namespace std;
 
-vector<vector<int>> nCycle(int N);
+std::vector<std::vector<int>> nCycle(int N);
 
-vector<vector<int>> complete(int N);
+std::vector<std::vector<int>> complete(int N);
 
-vector<vector<int>> empty(int N);
+std::vector<std::vector<int>> empty(int N);
 
-vector<vector<int>> heap(int N);
+std::vector<std::vector<int>> heap(int N);
 
 #endif
