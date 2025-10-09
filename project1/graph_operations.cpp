@@ -103,7 +103,7 @@ map<int,vector<int>> shortestPaths(vector<vector<int>>adjlist,int s)
         int dist = -curr.first;
         int u = curr.second;
         pq.pop();
-        if(d[s] != dist)
+        if(d[u] != dist)
         {
             continue;
         }
