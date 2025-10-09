@@ -120,17 +120,18 @@ map<int,vector<int>> shortestPaths(vector<vector<int>>adjlist,int s)
 
     for(int i = 0 ; i < N ; i++)
     {
+        int node = i;
         vector<int>path;
-        if(p[i] == -1)
+        if(p[node] == -1)
         {
             continue;
         }
-        while(p[i] != i)
+        while(p[node] != node)
         {
-            path.push_back(i);
-            i = p[i];
+            path.push_back(node);
+            node = p[node];
         }
-        path.push_back(i);
+        path.push_back(node);
         res[i] = path;
     }
     return res;
