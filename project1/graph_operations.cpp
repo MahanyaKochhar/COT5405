@@ -1,32 +1,33 @@
 #include "graph_operations.h"
 #include<queue>
+#include<iostream>
 using namespace std;
 
-void dfs(int u,vector<vector<int>>& adjlist,vector<bool>& visited,vector<int>& fin)
+void dfs(int u,vector<vector<int>>& adjlist,vector<int>& visited,int cnt)
 {
-    visited[u] = true;
-    fin.push_back(u);
-    for(auto v : adjlist[u])
+    visited[u] = cnt;
+    for(auto& v : adjlist[u])
     {
-        if(!visited[v])
+        if(visited[v] == 0)
         {
-            dfs(v,adjlist,visited,fin);
+            dfs(v,adjlist,visited,cnt);
         }
     }
 }
 
-vector<vector<int>> connectedComponents(vector<vector<int>>adjlist)
+vector<vector<int>> connectedComponents(vector<vector<int>>& adjlist)
 {
     int N = adjlist.size();
-    vector<bool>visited(N,false);
+    vector<int>visited(N,0);
     vector<vector<int>>ans;
+    int cnt = 0;
     for(int i = 0; i < N ; i++)
     {
-        if(!visited[i])
+        if(visited[i] == 0)
         {
-            vector<int>fin;
-            dfs(i,adjlist,visited,fin);
-            ans.push_back(fin);
+            cout << i << " " << "\n";
+            cnt++;
+            dfs(i,adjlist,visited,cnt);
         }
     }
     return ans;
