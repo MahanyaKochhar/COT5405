@@ -10,7 +10,17 @@ int main()
     int N;
     cin >> N;
     cout << "Here" << "\n";
-    vector<vector<int>>adjlist = readRoadEdges(N);
+    vector<vector<int>>adjlist = readEdges(N);
+    vector<vector<int>>ans = connectedComponents(adjlist);
+    cout << ans.size() << "\n";
+    for(int i = 0; i < ans.size();i++)
+    {
+        for(int j = 0; j < ans[i].size();j++)
+        {
+            cout << ans[i][j] << " ";
+        }
+        cout << "\n";
+    }
     // int fin = 0;
     // for(int i = 0 ; i < adjlist.size();i++)
     // {
@@ -22,7 +32,7 @@ int main()
     //     fin = max(fin,maxi);
     // }
     // cout << fin << "\n";
-    connectedComponents(adjlist);
+    // connectedComponents(adjlist);
     // for(int i = 0 ; i < adjlist.size();i++)
     // {
     //     cout << i << "-> ";
@@ -69,17 +79,17 @@ int main()
     //     }
     //     cout << "\n";
     //     cout << "*********" << "\n";
-    //     // map<int,vector<int>> paths = shortestPaths(adjlist,0);
-    //     // cout << "Shortest Paths with node " << 0 << " as the source." << "\n";
-    //     // for(auto pair : paths)
-    //     // {
-    //     //     cout << "Path from " << pair.first << " to " << 0 << "\n";
-    //     //     for(auto& x : paths[pair.first])
-    //     //     {
-    //     //         cout << x << " ";
-    //     //     }
-    //     //     cout << "\n";
-    //     // }
+        // map<int,vector<int>> paths = shortestPaths(adjlist,0);
+        // cout << "Shortest Paths with node " << 0 << " as the source." << "\n";
+        // for(auto pair : paths)
+        // {
+        //     cout << "Path from " << pair.first << " to " << 0 << "\n";
+        //     for(auto& x : paths[pair.first])
+        //     {
+        //         cout << x << "--";
+        //     }
+        //     cout << "\n";
+        // }
     //     cout << "=============" << "\n";
     // }
 

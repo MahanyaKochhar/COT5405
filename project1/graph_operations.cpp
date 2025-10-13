@@ -3,31 +3,53 @@
 #include<iostream>
 using namespace std;
 
-void dfs(int u,vector<vector<int>>& adjlist,vector<int>& visited,int cnt)
+// void dfs(int u,vector<vector<int>>& adjlist,vector<int>& visited,int cnt)
+// {
+//     visited[u] = cnt;
+//     for(auto& v : adjlist[u])
+//     {
+//         if(visited[v] == 0)
+//         {
+//             dfs(v,adjlist,visited,cnt);
+//         }
+//     }
+// }
+
+vector<int> bfs(int u,vector<vector<int>>&adjlist,vector<bool>&visited)
 {
-    visited[u] = cnt;
-    for(auto& v : adjlist[u])
+    vector<int> cc;
+    cc.push_back(u);
+    visited[u] = true;
+    queue<int>q;
+    q.push(u);
+    while(!q.empty())
     {
-        if(visited[v] == 0)
+        int front = q.front();
+        q.pop();
+        for(auto& v : adjlist[front])
         {
-            dfs(v,adjlist,visited,cnt);
+            if(!visited[v])
+            {
+                visited[v] = true;
+                cc.push_back(v);
+                q.push(v);
+            }
         }
     }
+    return cc;
 }
 
 vector<vector<int>> connectedComponents(vector<vector<int>>& adjlist)
 {
     int N = adjlist.size();
-    vector<int>visited(N,0);
+    vector<bool>visited(N,false);
     vector<vector<int>>ans;
-    int cnt = 0;
     for(int i = 0; i < N ; i++)
     {
-        if(visited[i] == 0)
+        if(!visited[i])
         {
-            cout << i << " " << "\n";
-            cnt++;
-            dfs(i,adjlist,visited,cnt);
+            vector<int> cc = bfs(i,adjlist,visited);
+            ans.push_back(cc);
         }
     }
     return ans;
@@ -88,7 +110,7 @@ vector<int> oneCycle(vector<vector<int>>& adjlist)
     return fin;
 }
 
-map<int,vector<int>> shortestPaths(vector<vector<int>>adjlist,int s)
+map<int,vector<int>> shortestPaths(vector<vector<int>>&adjlist,int s)
 {
     map<int,vector<int>>res;
     int N = adjlist.size();
