@@ -3,17 +3,6 @@
 #include<iostream>
 using namespace std;
 
-// void dfs(int u,vector<vector<int>>& adjlist,vector<int>& visited,int cnt)
-// {
-//     visited[u] = cnt;
-//     for(auto& v : adjlist[u])
-//     {
-//         if(visited[v] == 0)
-//         {
-//             dfs(v,adjlist,visited,cnt);
-//         }
-//     }
-// }
 
 vector<int> bfs(int u,vector<vector<int>>&adjlist,vector<bool>&visited)
 {
@@ -39,75 +28,91 @@ vector<int> bfs(int u,vector<vector<int>>&adjlist,vector<bool>&visited)
     return cc;
 }
 
+
+vector<int> dfs(int u,vector<vector<int>>&adjlist,vector<bool>&visited,vector<int>&parent,int& nd1,int& nd2)
+{
+    vector<int> cc;
+    parent[u] = -1;
+    stack<int>s;
+    s.push(u);
+    while(!s.empty())
+    {
+        int curr = s.top();
+        s.pop();
+        if(visited[curr])
+        {
+            continue;
+        }
+        visited[curr] = true; 
+        cc.push_back(curr);
+        for(auto& v : adjlist[curr])
+        {
+            if(!visited[v])
+            {
+                parent[v] = curr;
+                s.push(v);
+            }
+            else if(visited[v] && v != parent[curr])
+            {
+                nd1 = curr;
+                nd2 = v;
+            }
+        }
+    }
+    return cc;
+}
+
 vector<vector<int>> connectedComponents(vector<vector<int>>& adjlist)
 {
     int N = adjlist.size();
     vector<bool>visited(N,false);
+    vector<int>parent(N,-1);
     vector<vector<int>>ans;
+    int nd1 = -1,nd2 = -1;
     for(int i = 0; i < N ; i++)
     {
         if(!visited[i])
         {
-            vector<int> cc = bfs(i,adjlist,visited);
+            vector<int> cc = dfs(i,adjlist,visited,parent,nd1,nd2);
             ans.push_back(cc);
         }
     }
     return ans;
 }
 
-void checkCycle(vector<vector<int>>&adjlist,int u,int p,vector<bool>& visited,vector<int>&curr,int& st,vector<int>& ans)
-{
-    visited[u] = true;
-    curr.push_back(u);
-    for(auto v : adjlist[u])
-    {
-        if(!visited[v])
-        {
-            checkCycle(adjlist,v,u,visited,curr,st,ans);
-        }
-        else if(visited[v] && v != p && ans.size() == 0)
-        {
-            ans = curr;
-            st = v;
-        }
-    }
-    curr.pop_back();
-}
 
 vector<int> oneCycle(vector<vector<int>>& adjlist)
 {
-    vector<int>fin;
     int N = adjlist.size();
     vector<bool>visited(N,false);
-    vector<int>ans;
-    vector<int>curr;
-    int st = -1;
+    vector<int>parent(N,-1);
+    int nd1 = -1,nd2 = -1;
+    bool cyclePresent = false;
     for(int i = 0; i < N ; i++)
     {
         if(!visited[i])
         {
-            checkCycle(adjlist,i,-1,visited,curr,st,ans);
-            if(st != -1)
+            dfs(i,adjlist,visited,parent,nd1,nd2);
+            if(nd1 != -1 && nd2 != -1)
             {
+                cyclePresent = true;
                 break;
             }
         }
     }
-    bool start = false;
-    for(int i = 0 ; i < ans.size();i++)
+    vector<int>cycle;
+    if(cyclePresent)
     {
-        if(ans[i] == st)
+        int tmp = nd1;
+        while(nd1 != nd2)
         {
-            start = true;
+            cycle.push_back(nd1);
+            nd1 = parent[nd1];
         }
-        if(start == true)
-        {
-            fin.push_back(ans[i]);
-        }
+        cycle.push_back(nd2);
+        cycle.push_back(tmp);
     }
-    if(st != -1)
-        fin.push_back(st);
-    return fin;
+    return cycle;
 }
 
 map<int,vector<int>> shortestPaths(vector<vector<int>>&adjlist,int s)

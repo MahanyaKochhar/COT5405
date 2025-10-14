@@ -4,7 +4,7 @@
 #include<iostream>
 using namespace std;
 
-vector<vector<int>> readEdges(int a)
+vector<vector<int>> readEdges()
 {
     vector<vector<int>>edges;
     ifstream inputCsv("./twitch_edges.csv");
@@ -32,33 +32,6 @@ vector<vector<int>> readEdges(int a)
     // cout << edges.size();
    return constructAdjacencyList(edges);
 
-}
-
-vector<vector<int>> readRoadEdges(int a)
-{
-    vector<vector<int>> edges;
-    ifstream file("./road_edges_tx.txt");
-    
-    
-    string line;
-    
-    while (getline(file, line)) {
-        if (line.empty()) continue;
-        
-        if (line[0] == '#') continue;
-        
-        stringstream ss(line);
-        int u, v;
-        
-        if (ss >> u >> v) {
-            edges.push_back({u, v});
-        }
-    }
-    
-    file.close();
-    
-    cout << edges.size() << "\n";
-    return constructAdjacencyList(edges);
 }
 
 
