@@ -1,14 +1,25 @@
 #include<iostream>
 #include<vector>
 #include "data.h"
+#include <chrono>
+#include <mach/mach.h>
 using namespace std;
 
+size_t getMemoryUsageKB() {
+    task_basic_info info;
+    mach_msg_type_number_t count = TASK_BASIC_INFO_COUNT;
+    task_info(mach_task_self(), TASK_BASIC_INFO,
+              (task_info_t)&info, &count);
+    return info.resident_size / 1024;
+}
 
 int main()
 {
+    using clock = std::chrono::high_resolution_clock;
     vector<pair<int,int>>szs = {{10,10},{10,100},{10,1000},{100,1000},{1000,1000}};
     for(int k = 0 ; k < szs.size(); k++)
     {
+        auto start = clock::now();
         pair<int,int>sz = szs[k];
         int m = sz.first, n = sz.second;
         vector<vector<bool>>B = generateMatrix(m,n);
@@ -70,13 +81,8 @@ int main()
         cout << "Dimensions of largest square sub matrix: " << ans << " x " << ans << "\n";
         if(ans != 0)
         {
-            l1 = l2;
-            r1 = r2;
-            while(l1 - 1 >= 0 && r1 - 1 >= 0 && min(opt[l1 - 1][r1 - 1],min(opt[l1 - 1][r1],opt[l1][r1 - 1])) != 0)
-            {
-                l1--;
-                r1--;
-            }
+            l1 = l2 - (ans - 1);
+            r1 = r2 - (ans - 1);
             cout << "Largest Square Sub Matrix: " << "\n";
             for(int i = l1 ; i <= l2; i++)
             {
@@ -87,6 +93,12 @@ int main()
                 cout << "\n";
             }
         }
+
+        auto end = clock::now();
+        std::chrono::duration<double, std::milli> elapsed = end - start;
+        size_t mem = getMemoryUsageKB();
+        std::cout << "Time: " << elapsed.count() << " ms\n";
+        cout << "Memory usage: " << mem << " KB\n";
         cout << "*************" << "\n";
     }
 }
