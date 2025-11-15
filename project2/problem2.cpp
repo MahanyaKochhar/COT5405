@@ -6,7 +6,6 @@ using namespace std;
 
 int main()
 {
-
     vector<pair<int,int>>szs = {{10,10},{10,100},{10,1000},{100,1000},{1000,1000}};
     for(int k = 0 ; k < szs.size(); k++)
     {
@@ -14,7 +13,8 @@ int main()
         int m = sz.first, n = sz.second;
         vector<vector<bool>>B = generateMatrix(m,n);
         vector<vector<int>>opt(m,vector<int>(n,0));
-
+        cout << "Matrix Dimensions: " << m << " x " << n << "\n";
+        cout << "Matrix :" << "\n";
         for(int i = 0 ; i < m ; i++)
         {
             for(int j = 0 ; j < n ; j++)
@@ -23,7 +23,7 @@ int main()
             }
             cout << "\n";
         }
-        cout << "*************" << "\n";
+        cout << "***************" << "\n";
         for(int j = 0 ; j < n; j++)
         {
             if(B[0][j] == 0)
@@ -67,7 +67,7 @@ int main()
                 }
             }
         }
-
+        cout << "Dimensions of largest square sub matrix: " << ans << " x " << ans << "\n";
         if(ans != 0)
         {
             l1 = l2;
@@ -77,7 +77,7 @@ int main()
                 l1--;
                 r1--;
             }
-
+            cout << "Largest Square Sub Matrix: " << "\n";
             for(int i = l1 ; i <= l2; i++)
             {
                 for(int j = r1 ; j <= r2 ; j++)
