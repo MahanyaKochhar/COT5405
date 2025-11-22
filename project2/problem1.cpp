@@ -37,15 +37,19 @@ void largestWeightCommonSubstring(string a,string b,map<char,double> frequencyMa
     }
     cout << "Score of Best(largest score) common substring: " << ans << "\n";
     string res = "";
-    while(ans != 0 && l1 > 0)
+    int delta_cnt = 0;
+    map<char,int>mp;
+    while(ans > 0 && l1 > 0)
     {
         if(a[l1 - 1] == b[r1 - 1])
         {
             ans -= (fixed ? 1 : frequencyMap[a[l1 - 1]]);
+            mp[a[l1 - 1]]++;
         }
         else
         {
             ans += delta;
+            delta_cnt++;
         }
         res.push_back(a[l1 -1]);
         l1--;
@@ -53,6 +57,11 @@ void largestWeightCommonSubstring(string a,string b,map<char,double> frequencyMa
     }
     reverse(res.begin(),res.end());
     cout << "Best(largest score) common substring: " << res << "\n";
+    for(auto& x : mp)
+    {
+        cout << x.second << " matches of " << x.first << "\n";
+    }
+    cout << "No of mismatches: " << delta_cnt << "\n";
 }
 
 

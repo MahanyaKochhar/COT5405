@@ -5,6 +5,7 @@
 ### Problem Overview
 Given two strings $a = a_1a_2...a_m$ and $b = b_1b_2...b_n$, where each character $a_i$ has an associated weight $w_i$, and a mismatch penalty $\delta$, find the common substring with the maximum score. Matching characters contribute their weight, while mismatches incur a penalty.
 
+
 ### Dynamic Programming Formulation
 
 #### State Definition
@@ -70,6 +71,19 @@ Starting from the position $(i^*, j^*)$ where the maximum score was achieved:
 3. **Termination:** Stop when $OPT(i,j) = 0$ (start of the optimal substring)
 4. **Reverse:** Since we built the string backwards, reverse it to get the actual substring
 
+#### Pseudo Code
+
+```
+string ans = "";
+int i = i*, j = j*;
+while(opt[i][j] > 0)
+{
+    ans.push_back(a[i]);
+    i--;
+    j--;
+}
+reverse(ans.begin(),ans.end());
+```
 
 ### Complexity Analysis
 
@@ -91,6 +105,46 @@ Starting from the position $(i^*, j^*)$ where the maximum score was achieved:
 - **DP Table Storage:** We maintain a 2D table of size $(m+1) \times (n+1)$ to store all $OPT(i,j)$ values
 - **Auxiliary Space:** $O(1)$ for tracking maximum value and indices
 - **Total Space:** $O(m \cdot n)$
+
+### Common Substring Analysis Results
+
+The analysis compares the following two input strings:
+
+* **String a**: `"ABCAABCAA"`
+* **String b**: `"ABBCAACCBBBBBB"`
+
+The scoring mechanism is based on the match weight ($w_l$) and the mismatch penalty ($\delta$). The score is calculated as: $\text{Score} = \left(\sum w_l \times \text{Matches}\right) - (\delta \times \text{Mismatches})$.
+
+---
+
+###  Detailed Results Table
+
+The match counts (A/B/C) refer to the number of times those letters appear in the **Best Common Substring**.
+
+| $w_l$ (Match Weight) | $\delta$ (Mismatch Penalty) | Best Common Substring | Score | Matches (A/B/C) | Mismatches |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| $\mathbf{1}$ | $\mathbf{10}$ | `BCAA` | **4.0000** | 2 / 1 / 1 | 0 |
+| Freq. of Letter | $5.80398$ | `ABCAABCAA` | **22.7560** | 4 / 1 / 1 | 3 |
+| Freq. of Letter | $11.9731$ | `BCAA` | **20.4400** | 2 / 1 / 1 | 0 |
+| Freq. of Letter | $11.2369$ | `BCAA` | **20.4400** | 2 / 1 / 1 | 0 |
+| Freq. of Letter | $11.9383$ | `BCAA` | **20.4400** | 2 / 1 / 1 | 0 |
+| Freq. of Letter | $9.09142$ | `BCAA` | **20.4400** | 2 / 1 / 1 | 0 |
+| Freq. of Letter | $\mathbf{0.245124}$ | `AABCAA` | **28.3149** | 3 / 1 / 1 | 1 |
+| Freq. of Letter | $3.90712$ | `AABCAA` | **24.6529** | 3 / 1 / 1 | 1 |
+| Freq. of Letter | $9.83778$ | `BCAA` | **20.4400** | 2 / 1 / 1 | 0 |
+| Freq. of Letter | $5.3316$ | `ABCAABCAA` | **23.2284** | 4 / 1 / 1 | 3 |
+| Freq. of Letter | $3.02249$ | `AABCAA` | **25.5375** | 3 / 1 / 1 | 1 |
+
+---
+
+###  Summary of Substrings
+
+The analysis yielded three distinct "Best Common Substrings" depending on the penalty ($\delta$):
+
+1.  **`BCAA`**: The highest-scoring result when the mismatch penalty ($\delta$) is **very high**, as it has **0 mismatches**.
+2.  **`AABCAA`**: The highest-scoring result for an **intermediate** range of $\delta$, offering a high match count for only **1 mismatch**.
+3.  **`ABCAABCAA`**: The highest-scoring result when the mismatch penalty is **very low**, as it maximizes the match score but incurs **3 mismatches**.
+
 
 ---
 
@@ -184,6 +238,20 @@ $$
 - Rows: $[i_{\text{top}}, i^*]$
 - Columns: $[j_{\text{left}}, j^*]$
 
+#### Pseudo Code
+```
+int k = opt[i*][j*];
+int i_top = i* - k + 1;
+int j_top = j* - k + 1;
+for(int i = i_top ; i <= i* ; i++)
+{
+    for(int j = j_top; j <= j* ; j++)
+    {
+        cout << B[i][j] << " ";
+    }
+    cout << "\n";
+}
+```
 
 ### Complexity Analysis
 
@@ -207,5 +275,7 @@ $$
 - **Auxiliary Space:** $O(1)$ for tracking the maximum value and its position
 - **Total Space:** $O(m \cdot n)$
 
+### Synthetic Data Memory and Running Time
+![Results](problem2_results.jpg)
 
 ---
