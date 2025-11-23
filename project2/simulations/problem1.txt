@@ -1,94 +1,175 @@
 (base) mahanyakochhar@Mahanyas-MacBook-Air project2 % ./fq
-ABFFGHIHJKL
-ADEIFIGHIJKL
+ABCDEGHZIHJKLKKLKL
+EFGHIJJKLKLLKKLLZ
 Given w_l is 1 and delta is 10 
-Score of Best(largest score) common substring: 3
-Best(largest score) common substring: GHI
-1 matches of G
-1 matches of H
-1 matches of I
+Score of Best(largest score) common substring: 4
+Best(largest score) common substring: JKLK
+1 matches of J
+2 matches of K
+1 matches of L
 No of mismatches: 0
 
-Given w_l is frequency of letter in English alphabet and delta is 2.10319 
-Score of Best(largest score) common substring: 15.4568
-Best(largest score) common substring: FFGHI
-1 matches of F
-1 matches of G
-1 matches of H
+Given w_l is frequency of letter in English alphabet and delta is 2.5131 
+Score of Best(largest score) common substring: 16.8945
+Best(largest score) common substring: EGHZIHJKLKKLK
+1 matches of E
 1 matches of I
+1 matches of J
+3 matches of K
+2 matches of L
+No of mismatches: 5
+
+Given w_l is frequency of letter in English alphabet and delta is 3.73302 
+Score of Best(largest score) common substring: 12.02
+Best(largest score) common substring: E
+1 matches of E
+No of mismatches: 0
+
+Given w_l is frequency of letter in English alphabet and delta is 4.4214 
+Score of Best(largest score) common substring: 12.02
+Best(largest score) common substring: E
+1 matches of E
+No of mismatches: 0
+
+Given w_l is frequency of letter in English alphabet and delta is 0.785434 
+Score of Best(largest score) common substring: 25.5328
+Best(largest score) common substring: ABCDEGHZIHJKLKKLK
+1 matches of E
+1 matches of I
+1 matches of J
+3 matches of K
+2 matches of L
+No of mismatches: 9
+
+Given w_l is frequency of letter in English alphabet and delta is 9.07401 
+Score of Best(largest score) common substring: 12.02
+Best(largest score) common substring: E
+1 matches of E
+No of mismatches: 0
+
+Given w_l is frequency of letter in English alphabet and delta is 3.70416 
+Score of Best(largest score) common substring: 12.02
+Best(largest score) common substring: E
+1 matches of E
+No of mismatches: 0
+
+Given w_l is frequency of letter in English alphabet and delta is 10.3204 
+Score of Best(largest score) common substring: 12.02
+Best(largest score) common substring: E
+1 matches of E
+No of mismatches: 0
+
+Given w_l is frequency of letter in English alphabet and delta is 8.00247 
+Score of Best(largest score) common substring: 12.02
+Best(largest score) common substring: E
+1 matches of E
+No of mismatches: 0
+
+Given w_l is frequency of letter in English alphabet and delta is 3.217 
+Score of Best(largest score) common substring: 13.375
+Best(largest score) common substring: EGHZIHJKLKKLK
+1 matches of E
+1 matches of I
+1 matches of J
+3 matches of K
+2 matches of L
+No of mismatches: 5
+
+Given w_l is frequency of letter in English alphabet and delta is 4.65819 
+Score of Best(largest score) common substring: 12.02
+Best(largest score) common substring: E
+1 matches of E
+No of mismatches: 0
+
+(base) mahanyakochhar@Mahanyas-MacBook-Air project2 % ./fq
+ABCAABCAA
+ABBCAACCBBBBBB
+Given w_l is 1 and delta is 10 
+Score of Best(largest score) common substring: 4
+Best(largest score) common substring: BCAA
+2 matches of A
+1 matches of B
+1 matches of C
+No of mismatches: 0
+
+Given w_l is frequency of letter in English alphabet and delta is 10.2897 
+Score of Best(largest score) common substring: 20.44
+Best(largest score) common substring: BCAA
+2 matches of A
+1 matches of B
+1 matches of C
+No of mismatches: 0
+
+Given w_l is frequency of letter in English alphabet and delta is 0.542911 
+Score of Best(largest score) common substring: 28.0171
+Best(largest score) common substring: ABCAABCAA
+4 matches of A
+1 matches of B
+1 matches of C
+No of mismatches: 3
+
+Given w_l is frequency of letter in English alphabet and delta is 4.40335 
+Score of Best(largest score) common substring: 24.1567
+Best(largest score) common substring: ABCAABCAA
+4 matches of A
+1 matches of B
+1 matches of C
+No of mismatches: 3
+
+Given w_l is frequency of letter in English alphabet and delta is 2.38828 
+Score of Best(largest score) common substring: 26.1717
+Best(largest score) common substring: ABCAABCAA
+4 matches of A
+1 matches of B
+1 matches of C
+No of mismatches: 3
+
+Given w_l is frequency of letter in English alphabet and delta is 7.60673 
+Score of Best(largest score) common substring: 20.9533
+Best(largest score) common substring: ABCAABCAA
+4 matches of A
+1 matches of B
+1 matches of C
+No of mismatches: 3
+
+Given w_l is frequency of letter in English alphabet and delta is 4.24732 
+Score of Best(largest score) common substring: 24.3127
+Best(largest score) common substring: AABCAA
+3 matches of A
+1 matches of B
+1 matches of C
 No of mismatches: 1
 
-Given w_l is frequency of letter in English alphabet and delta is 8.2525 
-Score of Best(largest score) common substring: 15.26
-Best(largest score) common substring: GHI
-1 matches of G
-1 matches of H
-1 matches of I
-No of mismatches: 0
-
-Given w_l is frequency of letter in English alphabet and delta is 7.14427 
-Score of Best(largest score) common substring: 15.26
-Best(largest score) common substring: GHI
-1 matches of G
-1 matches of H
-1 matches of I
-No of mismatches: 0
-
-Given w_l is frequency of letter in English alphabet and delta is 10.3026 
-Score of Best(largest score) common substring: 15.26
-Best(largest score) common substring: GHI
-1 matches of G
-1 matches of H
-1 matches of I
-No of mismatches: 0
-
-Given w_l is frequency of letter in English alphabet and delta is 3.79801 
-Score of Best(largest score) common substring: 15.26
-Best(largest score) common substring: GHI
-1 matches of G
-1 matches of H
-1 matches of I
-No of mismatches: 0
-
-Given w_l is frequency of letter in English alphabet and delta is 10.1411 
-Score of Best(largest score) common substring: 15.26
-Best(largest score) common substring: GHI
-1 matches of G
-1 matches of H
-1 matches of I
-No of mismatches: 0
-
-Given w_l is frequency of letter in English alphabet and delta is 1.64073 
-Score of Best(largest score) common substring: 15.9193
-Best(largest score) common substring: FFGHI
-1 matches of F
-1 matches of G
-1 matches of H
-1 matches of I
+Given w_l is frequency of letter in English alphabet and delta is 2.7831 
+Score of Best(largest score) common substring: 25.7769
+Best(largest score) common substring: AABCAA
+3 matches of A
+1 matches of B
+1 matches of C
 No of mismatches: 1
 
-Given w_l is frequency of letter in English alphabet and delta is 6.9065 
-Score of Best(largest score) common substring: 15.26
-Best(largest score) common substring: GHI
-1 matches of G
-1 matches of H
-1 matches of I
-No of mismatches: 0
+Given w_l is frequency of letter in English alphabet and delta is 1.13257 
+Score of Best(largest score) common substring: 27.4274
+Best(largest score) common substring: AABCAA
+3 matches of A
+1 matches of B
+1 matches of C
+No of mismatches: 1
 
-Given w_l is frequency of letter in English alphabet and delta is 4.12329 
-Score of Best(largest score) common substring: 15.26
-Best(largest score) common substring: GHI
-1 matches of G
-1 matches of H
-1 matches of I
-No of mismatches: 0
+Given w_l is frequency of letter in English alphabet and delta is 1.23969 
+Score of Best(largest score) common substring: 27.3203
+Best(largest score) common substring: ABCAABCAA
+4 matches of A
+1 matches of B
+1 matches of C
+No of mismatches: 3
 
-Given w_l is frequency of letter in English alphabet and delta is 4.87648 
-Score of Best(largest score) common substring: 15.26
-Best(largest score) common substring: GHI
-1 matches of G
-1 matches of H
-1 matches of I
-No of mismatches: 0
+Given w_l is frequency of letter in English alphabet and delta is 5.55292 
+Score of Best(largest score) common substring: 23.0071
+Best(largest score) common substring: AABCAA
+3 matches of A
+1 matches of B
+1 matches of C
+No of mismatches: 1
 
 (base) mahanyakochhar@Mahanyas-MacBook-Air project2 % 

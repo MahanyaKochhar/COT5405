@@ -145,6 +145,43 @@ The analysis yielded three distinct "Best Common Substrings" depending on the pe
 2.  **`AABCAA`**: The highest-scoring result for an **intermediate** range of $\delta$, offering a high match count for only **1 mismatch**.
 3.  **`ABCAABCAA`**: The highest-scoring result when the mismatch penalty is **very low**, as it maximizes the match score but incurs **3 mismatches**.
 
+-----
+
+The analysis now compares the following two input strings:
+
+* **String a**: `"ABCDEGHZIHJKLKKLKL"`
+* **String b**: `"EFGHIJJKLKLLKKLLZ"`
+
+The scoring mechanism is based on the match weight ($w_l$) and the mismatch penalty ($\delta$). The score is calculated as: $\text{Score} = \left(\sum w_l \times \text{Matches}\right) - (\delta \times \text{Mismatches})$.
+
+---
+
+### Detailed Results Table
+
+The match counts refer to the number of times those letters appear in the **Best Common Substring**. For brevity, only letters that appear in a match (E, I, J, K, L) are listed.
+
+| $w_l$ (Match Weight) | $\delta$ (Mismatch Penalty) | Best Common Substring | Score | Matches (E/I/J/K/L) | Mismatches |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| $\mathbf{1}$ | $\mathbf{10}$ | `JKLK` | **4.0000** | 0 / 0 / 1 / 2 / 1 | 0 |
+| Freq. of Letter | $7.31791$ | `E` | **12.0200** | 1 / 0 / 0 / 0 / 0 | 0 |
+| Freq. of Letter | $11.1879$ | `E` | **12.0200** | 1 / 0 / 0 / 0 / 0 | 0 |
+| Freq. of Letter | $4.38296$ | `E` | **12.0200** | 1 / 0 / 0 / 0 / 0 | 0 |
+| Freq. of Letter | $3.71391$ | `E` | **12.0200** | 1 / 0 / 0 / 0 / 0 | 0 |
+| Freq. of Letter | $4.95628$ | `E` | **12.0200** | 1 / 0 / 0 / 0 / 0 | 0 |
+| Freq. of Letter | $3.5106$ | `E` | **12.0200** | 1 / 0 / 0 / 0 / 0 | 0 |
+| Freq. of Letter | $2.45134$ | `EGHZIHJKLKKLK` | **17.2033** | 1 / 1 / 1 / 3 / 2 | 5 |
+| Freq. of Letter | $5.26614$ | `E` | **12.0200** | 1 / 0 / 0 / 0 / 0 | 0 |
+| Freq. of Letter | $\mathbf{0.377216}$ | `EGHZIHJKLKKLK` | **27.5739** | 1 / 1 / 1 / 3 / 2 | 5 |
+| Freq. of Letter | $11.0693$ | `E` | **12.0200** | 1 / 0 / 0 / 0 / 0 | 0 |
+
+---
+
+###  Summary of substrings
+
+This dataset demonstrates a strong preference for the single-character match **`E`** across most $\delta$ values due to the high penalty of mismatches versus the gain from extra match weight.
+
+1.  **High Match Score (Low Penalty):** The longest match, **`EGHZIHJKLKKLK`**, is optimal when $\delta$ is very low ($\leq 2.45134$), accepting **5 mismatches** for the highest total score.
+2.  **Perfect Match Score (High Penalty):** When $\delta$ is high, the optimal match is the shortest perfect match, **`E`**, with **0 mismatches** and a score equal to the frequency weight of 'E' ($12.02$).
 
 ---
 
